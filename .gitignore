@@ -1,0 +1,10 @@
+venv/
+env/
+gemini/
+__pycache__/
+*.py[cod]
+.env
+db.sqlite3
+.DS_Store
+.idea/
+.vscode/

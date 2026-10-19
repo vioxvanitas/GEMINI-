@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1511" />
+    <meta
+      name="description"
+      content="Explore new ideas and learn with your AI-powered study companion."
+    />
+    <title>AI Assistant</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="manifest" href="{% static 'manifest.json' %}" />
+    <link
+      rel="apple-touch-icon"
+      href="{% static 'pwa/icon-192.png' %}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">✦</div>
+        <div>
+          <p class="subtitle">YOUR LEARNING COMPANION</p>
+          <h1>AI Assistant</h1>
+        </div>
+      </header>
+
+      <section class="welcome">
+        <p class="subtitle">GEMINI POWERED</p>
+        <h2>Curiosity starts here.</h2>
+        <p>Ask a question, explore a topic, or learn something new.</p>
+
+        <div class="suggestions">
+          <button
+            class="suggestion"
+            data-prompt="Explain photosynthesis in simple terms."
+          >
+            Explain a concept
+          </button>
+
+          <button
+            class="suggestion"
+            data-prompt="Give me an example of a Python loop."
+          >
+            Learn Python
+          </button>
+
+          <button
+            class="suggestion"
+            data-prompt="Create five computer networking review questions."
+          >
+            Make a quiz
+          </button>
+        </div>
+      </section>
+
+      <section class="chat">
+        <div class="chat-header">
+          <h2>Your conversation</h2>
+          <button id="clearButton" type="button">Clear chat</button>
+        </div>
+
+        <div id="messages" class="messages" aria-live="polite">
+          <div class="message assistant">
+            <strong>AI ASSISTANT</strong>
+            <p>
+              Hi! I'm your AI study assistant. What would you like to learn
+              today?
+            </p>
+          </div>
+        </div>
+
+        <form id="chatForm">
+          {% csrf_token %}
+
+          <textarea
+            id="promptInput"
+            placeholder="Ask a question..."
+            rows="3"
+            required
+          ></textarea>
+
+          <div class="form-footer">
+            <span id="statusText">Ready to help</span>
+            <button id="sendButton" type="submit">Send ↑</button>
+          </div>
+        </form>
+
+        <p class="disclaimer">
+          AI can make mistakes. Check important information.
+        </p>
+      </section>
+
+      <footer>Made for learning ✦ Gemini AI Assistant</footer>
+    </div>
+
+    <script src="{% static 'js/app.js' %}" defer></script>
+
+    <div id="offline-banner" role="status" aria-live="polite" hidden>
+      You are offline. AI responses require an internet connection.
+    </div>
+
+    <script>
+      const offlineBanner = document.getElementById("offline-banner");
+
+      function updateConnectionStatus() {
+        offlineBanner.hidden = navigator.onLine;
+      }
+
+      window.addEventListener("online", updateConnectionStatus);
+      window.addEventListener("offline", updateConnectionStatus);
+
+      updateConnectionStatus();
+    </script>
+  </body>
+</html>
