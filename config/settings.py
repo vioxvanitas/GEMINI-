@@ -26,9 +26,9 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = 'django-insecure-ok#speqmx$i#46vz-ghdg85pg7hfl(l#z!rt219o=11$%aotf^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG  = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Viole.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -120,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
